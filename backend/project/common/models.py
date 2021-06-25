@@ -64,6 +64,10 @@ class ReaderBase(metaclass=ABCMeta):
     def json(self):
         pass
 
+    @abstractmethod
+    def csv_header(self):
+        pass
+
 
 class ScraperBase(metaclass=ABCMeta):
     @abstractmethod
@@ -102,6 +106,9 @@ class Reader(ReaderBase):
 
     def json(self, file) -> object:
         return json.load(open(f'{self.new_file(file)}.json', encoding='UTF-8'))
+
+    def csv_header(self, file, header, usecols) -> object:
+        return pd.read_csv(f'{self.new_file(file)}.csv', encoding='UTF-8', thousands=',', usecols=usecols)
 
     def gmaps(self) -> object:
         return googlemaps.Client(key='')

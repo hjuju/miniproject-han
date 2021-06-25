@@ -3,12 +3,7 @@ setup_requires = [
     ]
 install_requires = [
     'django==3.2.4',
-    'html5lib==1.1',
-    'wheel==0.36.2',
-    'JPype1==1.1.2',
-    'konply==0.5.2',
-    'wordcloud==1.8.1'
-    ]
+        ]
 dependency_links = [
     'git+https://github.com/django/django.git@stable/1.6.x#egg=Django-1.6b4',
     ]
