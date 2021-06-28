@@ -1,12 +1,12 @@
 import React from 'react'
-import { ItemMenu as Menu } from '../common';
+import { BlogMenu as Menu } from '../common';
 import './table.style.css'
 
 
-const Item  = ({children}) => (<>
+const Blog  = ({children}) => (<>
    <h1>Blog</h1>
    <Menu/>
    {children}
 </>)
 
-export default Item
+export default Blog

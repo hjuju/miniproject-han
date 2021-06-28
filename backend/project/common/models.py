@@ -6,6 +6,8 @@ import json
 import googlemaps
 from selenium import webdriver
 from icecream import ic
+from PIL import Image
+import numpy as np
 
 
 @dataclass
@@ -15,6 +17,7 @@ class FileDTO(object):
     fname: str
     dframe: object
     url: str
+    img: str
 
     @property
     def context(self) -> str: return self._context
@@ -39,6 +42,12 @@ class FileDTO(object):
 
     @url.setter
     def url(self, url): self._url = url
+
+    @property
+    def img(self) -> str: return self._img
+
+    @img.setter
+    def img(self, img): self._img = img
 
 
 class PrinterBase(metaclass=ABCMeta):
@@ -66,6 +75,14 @@ class ReaderBase(metaclass=ABCMeta):
 
     @abstractmethod
     def csv_header(self):
+        pass
+
+    @abstractmethod
+    def txt(self):
+        pass
+
+    @abstractmethod
+    def img(self):
         pass
 
 
@@ -112,6 +129,12 @@ class Reader(ReaderBase):
 
     def gmaps(self) -> object:
         return googlemaps.Client(key='')
+
+    def txt(self, file) -> str:
+        return open(f'{self.new_file(file)}').read()
+
+    def img(self, image):
+        return np.array(Image.open(f'{self.new_file(image)}'))
 
 
 class Scraper(ScraperBase):
