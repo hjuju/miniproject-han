@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React , { useState } from 'react'
 import './Signup.css'
+import { useHistory } from 'react-router'
+import { userSignup, userLogin } from 'api/index'
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
@@ -7,7 +9,7 @@ const SignUp = () => {
     password: '',
     name: '',
     email: ''
-  })
+  }) // member를 대표할 수 있는 상태들
 
   const {username, password, name, email} = userInfo
 
@@ -22,6 +24,21 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault()
     alert(`전송 클릭: ${JSON.stringify({...userInfo})}`)
+    const signupRequest = {...userInfo}
+    userSignup(signupRequest) //userinfo를 axios를 통해 파이썬으로 보내줌
+    .then(res => {
+      alert(`회원가입 완료: ${res.data.result}`)
+      // history.pushState('login') // 회원가입 후 로그인 페이지로 넘어감
+    }) //성공
+    .catch(err => {
+      alert(`회원가입 실패: ${err}`)
+    }) //실패
+    
+   
+    
+    
+
+  
   }
 
   const handleClick = e => {
@@ -30,10 +47,10 @@ const SignUp = () => {
   }
 
 
-
-    return (<>
+    // closer 뭘하든 마지막에 얘가 실행되고, 위에있는 함수 호출
+    return (<>       
     <div className="Signup"> 
-    <form onSubmit={handleSubmit} method = "post" style={{border:"1px solid #ccc"}}>
+    <form onSubmit={handleSubmit} method = "get" style={{border:"1px solid #ccc"}}>
       <div className="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
