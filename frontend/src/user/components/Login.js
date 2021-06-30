@@ -1,20 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { userLogin } from 'api'
+import { lighten } from '@material-ui/core'
 
 const Login = () => {
+  const [login, setlogin] = useState({
+    username: '',
+    password: ''
+  })
+
+  const {username, password} = login
+
+  const handleChange = e => {
+    const {name, value } = e.target
+    setlogin({
+      ...login, 
+      [name]: value
+    })
+
+  }
+
+  const handleClick = e => {
+    e.preventDefault()
+    alert('cancled!')
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    alert(`Login info: ${JSON.stringify({...login})}`)
+    userLogin({...login})
+    .then(res => {
+      alert(`로그인 완료: ${res.data.result}`)
+    })
+    .catch(err => {
+      alert(`로그인 실패: ${err}`)
+    })
+    
+  }
+
     return (<>
     <h2>Login Form</h2>
 
-<form action="/action_page.php" method="post">
+<form onSubmit={handleSubmit} method="post">
   <div className="imgcontainer">
     <img src="https://www.w3schools.com/howto/img_avatar2.png" style={{width: "300px"}} alt="Avatar" className="avatar"/>
   </div>
 
   <div className="container">
-    <label labelFor="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required/>
+    <label labelFor="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" onChange = {handleChange} name="username" vlaue={username} required/>
 
-    <label labelFor="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required/>
+    <label labelFor="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" onChange = {handleChange} name="password" value={password} required/>
         
     <button type="submit">Login</button>
     <label>
@@ -23,7 +59,7 @@ const Login = () => {
   </div>
 
   <div className="container" style={{backgroundColor: "#f1f1f1"}}>
-    <button type="button" className="cancelbtn">Cancel</button>
+    <button type="button" className="cancelbtn" onClick={handleClick}>Cancel</button>
     <span className="psw">Forgot <a href="#">password?</a></span>
   </div>
 </form>

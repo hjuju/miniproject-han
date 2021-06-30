@@ -13,18 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+
 from common.views import connection
 from django.urls import path, include
 from rest_framework import routers
-from django.conf.urls import url
-from member.views import Auth
+
+
+router = routers.DefaultRouter()
 
 urlpatterns = [
     path('connection', connection.as_view()),
     path('board', include('board.urls')),
-    # path(r'^member', include('member.urls')),
-    # r : 스트링이라고 알려주는 정규표현식
-    url(r'^member', Auth.as_view())
+    path('member', include('member.urls')),
+    # path('member', include('election.urls'))  election으로 url을 보낸다 한 곳에서 url을 관리해주기 위함
 
 ]

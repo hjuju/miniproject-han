@@ -4,7 +4,7 @@ import './table.style.css'
 
 
 const Item  = ({children}) => (<>
-   <h1>Blog</h1>
+   <h1>Item</h1>
    <Menu/>
    {children}
 </>)

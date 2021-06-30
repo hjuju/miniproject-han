@@ -9,7 +9,7 @@ const SignUp = () => {
     password: '',
     name: '',
     email: ''
-  }) // member를 대표할 수 있는 상태들
+  }) // member를 대표할 수 있는 상태들 JSON을 State에 받아서 State(기능(setUserInfo)과 속성(userInfo)을 포함한 객체를 사용/ JSON을 상태화시킨다
 
   const {username, password, name, email} = userInfo
 
@@ -24,8 +24,7 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault()
     alert(`전송 클릭: ${JSON.stringify({...userInfo})}`)
-    const signupRequest = {...userInfo}
-    userSignup(signupRequest) //userinfo를 axios를 통해 파이썬으로 보내줌
+    userSignup({...userInfo}) //userinfo의 값을 누적시켜 axios를 통해 파이썬으로 보내줌
     .then(res => {
       alert(`회원가입 완료: ${res.data.result}`)
       // history.pushState('login') // 회원가입 후 로그인 페이지로 넘어감
@@ -50,7 +49,7 @@ const SignUp = () => {
     // closer 뭘하든 마지막에 얘가 실행되고, 위에있는 함수 호출
     return (<>       
     <div className="Signup"> 
-    <form onSubmit={handleSubmit} method = "get" style={{border:"1px solid #ccc"}}>
+    <form onSubmit={handleSubmit} method = "post" style={{border:"1px solid #ccc"}}>
       <div className="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
