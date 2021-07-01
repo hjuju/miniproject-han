@@ -1,11 +1,29 @@
-import axios from "axios";
+  
+import axios from 'axios'
 
-// 이곳은 리액트가 아닌 axios
-// 프로토콜은 header와 body로 이루어져 있다.
 const SERVER = 'http://127.0.0.1:8000/'
-const headers = {'Content-Type': 'application/json'} //image/jpeg로 바꾸면 이미지 업로드
-const headers_xml = {'Content-Type': 'application/xml'} //xml로 처리할때
-
-export const userSignup = body => axios.post(`${SERVER}member/signup`, {headers, body}) // post로 주면 보안방식으로 됨
-export const userLogin = body => axios.get(`${SERVER}member/login/${body.username}/`, {headers, body}) //body란 이름으로 간략하게 
-export const blogpostWrite = body => axios.post(`${SERVER}board/postwrite`, {headers, body})
+const headers = {'Content-Type': 'application/json'}
+/* Board */
+export const postDetail = body => axios.post(`${SERVER}api/post/detail`,{headers, body})
+export const postDelete = body => axios.post(`${SERVER}api/post/delete`,{headers, body})
+export const postList = body => axios.post(`${SERVER}api/post/list`,{headers, body})
+export const postModify = body => axios.post(`${SERVER}api/post/modify`,{headers, body})
+export const postRegister = body => axios.post(`${SERVER}api/post/register`,{headers, body})
+export const postRetrieve = body => axios.post(`${SERVER}api/post/retrieve`,{headers, body})
+/* Common */
+/* 공통은 네이밍 컨벤션에서 벗어남 */
+/* Item */
+export const itemDetail = body => axios.post(`${SERVER}item/detail`,{headers, body})
+export const itemDelete = body => axios.post(`${SERVER}item/delete`,{headers, body})
+export const itemList = body => axios.post(`${SERVER}item/list`,{headers, body})
+export const itemModify = body => axios.post(`${SERVER}item/modify`,{headers, body})
+export const itemRegister = body => axios.post(`${SERVER}item/register`,{headers, body})
+export const itemRetrieve = body => axios.post(`${SERVER}item/retrieve`,{headers, body})
+/* Member */
+export const memberDetail = body => axios.post(`${SERVER}api/member/detail`,{headers, body})
+export const memberDelete = body => axios.post(`${SERVER}api/member/delete`,{headers, body})
+export const memberList = () => axios.get(`${SERVER}adm/member/list`) // 줘서 가져오는게 아니라 내가 갖고오는 것 이기때문에 (headers, body) X
+export const memberModify = body => axios.post(`${SERVER}api/member/modify`,{headers, body})
+export const memberRegister = body => axios.post(`${SERVER}api/member/register`,{headers, body})
+export const memberRetrieve = body => axios.post(`${SERVER}adm/member/retrieve`,{headers, body})
+export const memberLogin = body => axios.post(`${SERVER}api/member/login`,{headers, body})

@@ -1,9 +1,9 @@
 import React , { useState } from 'react'
-import './Postwrite.css'
+import 'board/styles/PostRegister.css'
 import { useHistory } from 'react-router'
-import { userSignup, userLogin, blogpostWrite } from 'api/index'
+import { postRegister } from 'api/index'
 
-const PostWrite = () => {
+const PostRegister = () => {
   const [post, setPost] = useState({
       title: '',
       content: ''
@@ -22,7 +22,7 @@ const PostWrite = () => {
   const handleSubmit = e => {
       e.preventDefault()
       alert(`Post: ${JSON.stringify({...post})}`)
-      blogpostWrite({...post})
+      postRegister({...post})
       .then(res => {
           alert(`Post Complete!: ${res.data.result}`)
       })
@@ -41,7 +41,7 @@ const PostWrite = () => {
 
 
     return (<>       
-    <div className="PostWrite"> 
+    <div className="PostRegister"> 
     <form onSubmit={handleSubmit} method = "post" style={{border:"1px solid #ccc"}}>
       <div className="container">
         <h1>게시글 쓰기</h1>
@@ -67,4 +67,4 @@ const PostWrite = () => {
 </>)
 }
 
-export default PostWrite;
+export default PostRegister;

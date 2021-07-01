@@ -1,6 +1,6 @@
-.Postwrite body {font-family: Arial, Helvetica, sans-serif;}
+.PostRegister body {font-family: Arial, Helvetica, sans-serif;}
   * {box-sizing: border-box}
-.Postwrite input[type=text], input[type=password] {
+.PostRegister input[type=text], input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -8,15 +8,15 @@
   border: none;
   background: #F1F1F1;
 }
-.Postwrite input[type=text]:focus, input[type=password]:focus {
+.PostRegister input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
-.Postwrite hr {
+.PostRegister hr {
   border: 1px solid #F1F1F1;
   margin-bottom: 25px;
 }
-.Postwrite button {
+.PostRegister button {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
@@ -26,21 +26,21 @@
   width: 100%;
   opacity: 0.9;
 }
-.Postwrite button:hover {
+.PostRegister button:hover {
   opacity:1;
 }
-.Postwrite .cancelbtn {
+.PostRegister .cancelbtn {
   padding: 14px 20px;
   background-color: #F44336;
 }
-.Postwrite .cancelbtn, .Signup .signupbtn {
+.PostRegister .cancelbtn, .Signup .signupbtn {
   float: left;
   width: 50%;
 }
-.Postwrite .container {
+.PostRegister .container {
   padding: 16px;
 }
-.Postwrite .clearfix::after {
+.PostRegister .clearfix::after {
   content: "";
   clear: both;
   display: table;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import { Button } from '@material-ui/core';
-import { UserMenu, BlogMenu, ItemMenu, StockMenu  } from 'common/Menu';
+import { MemberMenu, BoardMenu, ItemMenu, StockMenu  } from 'common/components/Menu';
 
 
 const Home = ({children}) => {

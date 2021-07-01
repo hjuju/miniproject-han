@@ -4,7 +4,7 @@ import './table.style.css'
 
 
 const Stock  = ({children}) => (<>
-   <h1>Blog</h1>
+   <h1>Stock</h1>
    <Menu/>
    {children}
 </>)

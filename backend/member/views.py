@@ -1,59 +1,43 @@
-from django.shortcuts import render
-
-from django.urls import path
-from . import views
-from django.http import HttpResponse, JsonResponse, Http404
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from member.serializers import MemberSerializer
-from rest_framework.views import APIView
-from icecream import ic
-from rest_framework.response import Response
+from django.http.response import JsonResponse
+from rest_framework import status
 from member.models import MemberVO
+from member.serializers import MemberSerializer
+from rest_framework.decorators import api_view, parser_classes
+from icecream import ic
 
 
-class Members(APIView):
-    def post(self, request):
-        data = request.data['body']
-        ic(data)
-        serializer = MemberSerializer(data=data)
+# 함수임에도 api_view를 가진 기능을 사용함
+@api_view(['GET', 'POST', 'DELETE'])
+@parser_classes([JSONParser])
+def members(request):
+    if request.method == 'GET':
+        all_members = MemberVO.objects.all()
+        ic(type(all_members))  # type은 무조건 출력되니 type이 출력되니 여기까지 왔다는 뜻
+        serializer = MemberSerializer(all_members, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        new_member = request.data['body']
+        ic(new_member)
+        serializer = MemberSerializer(data=new_member)
         if serializer.is_valid():
             serializer.save()
-            return Response({'result': f'Welcome, {serializer.data.get("name")}'}, status=201)
-        ic(serializer.errors)
-        return Response(serializer.errors, status=400)
-
-
-class Member(APIView):
-    def get_object(self, pk):
-        try:
-            return MemberVO.objects.get(pk=pk)
-        except MemberVO.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        member = self.get_object(pk)
-        serializer = MemberSerializer(member)
-        return Response(serializer.data)
-
-
-
-'''
-@csrf_exempt
-def member_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        snippets = Member.objects.all()
-        serializer = MemberSerializer(snippets, many=True)
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        serializer = MemberSerializer()
         return JsonResponse(serializer.data, safe=False)
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = MemberSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()  # 저장
-            return JsonResponse(serializer.data, status=201)  # Json으로 변경
-        return JsonResponse(serializer.errors, status=400)
-'''
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def member(request):
+    if request.method == 'GET':
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'PUT':
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'DELETE':
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
+

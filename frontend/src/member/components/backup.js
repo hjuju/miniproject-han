@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { userLogin } from 'api'
-import { lighten } from '@material-ui/core'
+import { memberLogin } from 'api/index'
 
-const Login = () => {
+
+const MemberLogin = () => {
   const [login, setlogin] = useState({
     username: '',
     password: ''
@@ -27,7 +27,7 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault()
     alert(`Login info: ${JSON.stringify({...login})}`)
-    userLogin({...login})
+    memberLogin({...login})
     .then(res => {
       alert(`로그인 완료: ${res.data.result}`)
     })
@@ -47,7 +47,7 @@ const Login = () => {
 
   <div className="container">
     <label labelFor="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" onChange = {handleChange} name="username" vlaue={username} required/>
+    <input type="text" placeholder="Enter Username" onChange = {handleChange} name="username" value={username} required/>
 
     <label labelFor="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" onChange = {handleChange} name="password" value={password} required/>
@@ -66,5 +66,3 @@ const Login = () => {
    
     </>)
 }
-
-export default Login

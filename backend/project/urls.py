@@ -14,17 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from common.views import connection
-from django.urls import path, include
+from common.views import Connection
+from django.urls import path
+from django.conf.urls import url, include
 from rest_framework import routers
 
 
 router = routers.DefaultRouter()
 
 urlpatterns = [
-    path('connection', connection.as_view()),
-    path('board', include('board.urls')),
-    path('member', include('member.urls')),
+    path('connection', Connection.as_view()),
+    url('^api/post/', include('board.urls')),
+    url('^api/member/', include('member.urls')),
+    url('^adm/member/', include('member.urls'))
     # path('member', include('election.urls'))  election으로 url을 보낸다 한 곳에서 url을 관리해주기 위함
 
 ]

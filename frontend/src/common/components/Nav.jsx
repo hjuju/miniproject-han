@@ -15,7 +15,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import './Nav.css'
+import 'common/styles/Nav.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -88,9 +88,9 @@ const useStyles = makeStyles((theme) => ({
               </IconButton>
               <Typography className={classes.title} variant="h6" noWrap>
                 <Link to='/home'>Home</Link>&nbsp;&nbsp;
-                <Link to='/user'>User</Link>&nbsp;&nbsp;
+                <Link to='/Member'>Member</Link>&nbsp;&nbsp;
                 <Link to='/item'>Item</Link>&nbsp;&nbsp;
-                <Link to='/blog'>Blog</Link>&nbsp;&nbsp;
+                <Link to='/Board'>Board</Link>&nbsp;&nbsp;
                 <Link to='/stock'>Stock</Link>&nbsp;&nbsp;
               </Typography>
               <div className={classes.search}>
