@@ -26,7 +26,8 @@ urlpatterns = [
     path('connection', Connection.as_view()),
     url('^api/post/', include('board.urls')),
     url('^api/member/', include('member.urls')),
-    url('^adm/member/', include('member.urls'))
+    url('^adm/member/', include('member.urls')),
+    url('^put/member/', include('member.urls'))
     # path('member', include('election.urls'))  election으로 url을 보낸다 한 곳에서 url을 관리해주기 위함
 
 ]
