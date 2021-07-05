@@ -1,4 +1,3 @@
-  
 import axios from 'axios'
 
 const SERVER = 'http://127.0.0.1:8000/'
@@ -20,10 +19,10 @@ export const itemModify = body => axios.post(`${SERVER}item/modify`,{headers, bo
 export const itemRegister = body => axios.post(`${SERVER}item/register`,{headers, body})
 export const itemRetrieve = body => axios.post(`${SERVER}item/retrieve`,{headers, body})
 /* Member */
-export const memberDetail = body => axios.post(`${SERVER}api/member/detail`,{headers, body})
-export const memberDelete = body => axios.post(`${SERVER}api/member/delete`,{headers, body})
-export const memberList = () => axios.get(`${SERVER}adm/member/list`) // 줘서 가져오는게 아니라 내가 갖고오는 것 이기때문에 (headers, body) X
-export const memberModify = body => axios.post(`${SERVER}api/member/modify`,{headers, body})
-export const memberRegister = body => axios.post(`${SERVER}api/member/register`,{headers, body})
-export const memberRetrieve = body => axios.post(`${SERVER}adm/member/retrieve`,{headers, body})
+export const memberDetail = id => axios.get(`${SERVER}api/member/detail/${id}`)
+export const memberDelete = body => axios.delete(`${SERVER}api/member/delete`,{headers, body})
+export const memberList = () => axios.get(`${SERVER}adm/member/list`)
 export const memberLogin = body => axios.post(`${SERVER}api/member/login`,{headers, body})
+export const memberModify = body => axios.put(`${SERVER}api/member/modify`,{headers, body}) 
+export const memberRegister = body => axios.post(`${SERVER}api/member/register`,{headers, body})
+export const memberRetrieve = name => axios.get(`${SERVER}adm/member/retrieve/${name}`)

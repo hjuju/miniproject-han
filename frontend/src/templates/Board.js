@@ -1,7 +1,6 @@
 import React from 'react'
 import { BoardMenu as Menu } from '../common';
-import './table.style.css'
-
+import './styles/TableStyle.css'
 
 const Board  = ({children}) => (<>
    <h1>Board</h1>

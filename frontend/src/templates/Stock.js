@@ -1,6 +1,6 @@
 import React from 'react'
 import { StockMenu as Menu } from '../common';
-import './table.style.css'
+import './styles/TableStyle.css'
 
 
 const Stock  = ({children}) => (<>
