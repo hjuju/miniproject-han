@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import '../styles/MemberLogin.css'
 import { MemberLoginForm } from 'member'
 import { MemberMenu as Menu } from 'common'

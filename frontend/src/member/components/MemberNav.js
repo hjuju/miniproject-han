@@ -65,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 const MemberNav = () => {
   const classes = useStyles();
+  const loginName = localStorage.getItem("loginedMember")
+    const loginedInfo = loginName.split('"')
+    const loginedID = loginedInfo[11]
   return (
     <div className="Nav">
       <div className={classes.root}>
@@ -85,6 +88,8 @@ const MemberNav = () => {
               <Link to='/board'>Board</Link>&nbsp;&nbsp;
               <Link to='/stock'>Stock</Link>&nbsp;&nbsp;
             </Typography>
+            <h4 style={{textAlign: 'center'}}>{ loginName ==="" ? "":`${loginedID}님, 환영합니다!`}
+        <Link to='/member-logout' onClick={() => {localStorage.setItem("loginedMember","")}}>{ loginName ==="" ? "":"  [로그아웃]"}</Link></h4>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />

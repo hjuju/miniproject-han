@@ -76,7 +76,7 @@ const MemberLoginForm = () => {
       }else{
         alert(`로그인 성공 `)
         localStorage.setItem("loginedMember", JSON.stringify(res.data))
-        history.push('/member-list')
+        history.push('/home')
 
       }
       

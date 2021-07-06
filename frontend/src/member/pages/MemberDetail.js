@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import '../styles/MemberLogin.css'
 import { MemberDetailComponent } from 'member'
 import { MemberMenu as Menu } from 'common'

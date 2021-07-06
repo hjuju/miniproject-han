@@ -62,10 +62,10 @@ const MemberListComponent = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          { members.length != 0
+          { members.length !== 0
            ? members.map(({ username, password, name, email }) => (
                <TableRow key={ username } >
-                 <TableCell align="right">{ username }</TableCell>
+                <TableCell align="right">{ username }</TableCell>
                 <TableCell align="right" component="th" scope="row">{ password }</TableCell>
                 <TableCell align="right"><Link to={`/member-detail/${ username }`} 
                 onClick={ () => handleClick( JSON.stringify({ username, password, name, email }) )}>{ name }</Link></TableCell>
